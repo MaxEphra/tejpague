@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEJ Pague - Pague suas contas no Brasil direto dos EUA | Pay bills in Brazil from the US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #7ea172;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .language-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 2rem;
+        }
+        
+        .language-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-btn.active {
+            background-color: var(--light);
+            font-weight: bold;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e3a21;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .hero-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            background-color: var(--accent);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Services */
+        .services {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .service-card:hover h3 {
+            color: white;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .service-card:hover .service-icon {
+            color: white;
+        }
+        
+        /* Service Form */
+        .service-form {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+        
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .file-upload-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-list {
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-item button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .submit-info {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 5rem 0;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links, .language-switcher {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        /* Mobile Menu Open State */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transition: right 0.3s;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .mobile-language-switcher {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background-color: rgba(40, 167, 69, 0.8);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        /* Language-specific content */
+        .lang-pt { display: block; }
+        .lang-en { display: none; }
+        
+        body.english .lang-pt { display: none; }
+        body.english .lang-en { display: block; }
+    </style>
+</head>
+<body class="portuguese">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">T</div>
+                    <span>TEJ Pague</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#home" class="lang-pt">Início</a><a href="#home" class="lang-en">Home</a></li>
+                    <li><a href="#como-funciona" class="lang-pt">Como Funciona</a><a href="#como-funciona" class="lang-en">How It Works</a></li>
+                    <li><a href="#servicos" class="lang-pt">Serviços</a><a href="#servicos" class="lang-en">Services</a></li>
+                    <li><a href="#solicitar" class="lang-pt">Solicitar Serviço</a><a href="#solicitar" class="lang-en">Request Service</a></li>
+                    <li><a href="#depoimentos" class="lang-pt">Depoimentos</a><a href="#depoimentos" class="lang-en">Testimonials</a></li>
+                </ul>
+                
+                <div class="language-switcher">
+                    <button class="language-btn active" data-lang="pt">PT</button>
+                    <button class="language-btn" data-lang="en">EN</button>
+                </div>
+                
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">T</div>
+                <span>TEJ Pague</span>
+            </div>
+            <button class="close-menu">✕</button>
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="lang-pt">Início</a><a href="#home" class="lang-en">Home</a></li>
+            <li><a href="#como-funciona" class="lang-pt">Como Funciona</a><a href="#como-funciona" class="lang-en">How It Works</a></li>
+            <li><a href="#servicos" class="lang-pt">Serviços</a><a href="#servicos" class="lang-en">Services</a></li>
+            <li><a href="#solicitar" class="lang-pt">Solicitar Serviço</a><a href="#solicitar" class="lang-en">Request Service</a></li>
+            <li><a href="#depoimentos" class="lang-pt">Depoimentos</a><a href="#depoimentos" class="lang-en">Testimonials</a></li>
+        </ul>
+        
+        <div class="mobile-language-switcher">
+            <button class="language-btn active" data-lang="pt">Português</button>
+            <button class="language-btn" data-lang="en">English</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="lang-pt">Pague suas contas no Brasil direto dos EUA</h1>
+            <h1 class="lang-en">Pay Your Bills in Brazil Directly from the USA</h1>
+            
+            <p class="lang-pt">Com o TEJ Pague você tem praticidade, confiança e suporte especializado. Sua família no Brasil fica tranquila e você resolve tudo diretamente dos EUA.</p>
+            <p class="lang-en">With TEJ Pague you get convenience, trust, and specialized support. Your family in Brazil stays calm and you handle everything directly from the USA.</p>
+            
+            <div class="hero-buttons">
+                <a href="#solicitar" class="btn btn-primary hero-btn lang-pt">Solicitar Serviço</a>
+                <a href="#solicitar" class="btn btn-primary hero-btn lang-en">Request Service</a>
+                <a href="#como-funciona" class="btn btn-primary hero-btn lang-pt" style="background-color: var(--accent);">Saiba Mais</a>
+                <a href="#como-funciona" class="btn btn-primary hero-btn lang-en" style="background-color: var(--accent);">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-pt">Por que escolher o TEJ Pague?</h2>
+                <h2 class="lang-en">Why Choose TEJ Pague?</h2>
+                
+                <p class="lang-pt">Oferecemos a solução mais completa para brasileiros nos EUA pagarem contas no Brasil com taxa fixa de apenas $20 por operação</p>
+                <p class="lang-en">We offer the most complete solution for Brazilians in the USA to pay bills in Brazil with a fixed fee of only $20 per transaction</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">$</div>
+                    <h3 class="lang-pt">Taxa Fixa Transparente</h3>
+                    <h3 class="lang-en">Transparent Fixed Fee</h3>
+                    <p class="lang-pt">Apenas $20 por operação, sem surpresas ou taxas escondidas. Sabemos exatamente quanto você pagará.</p>
+                    <p class="lang-en">Only $20 per transaction, no surprises or hidden fees. You know exactly how much you'll pay.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="lang-pt">Pagamento Rápido</h3>
+                    <h3 class="lang-en">Fast Payment</h3>
+                    <p class="lang-pt">Realizamos o pagamento de suas contas em até 2 horas úteis após a confirmação do pagamento.</p>
+                    <p class="lang-en">We process your bill payments within 2 business hours after payment confirmation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="lang-pt">Segurança Garantida</h3>
+                    <h3 class="lang-en">Guaranteed Security</h3>
+                    <p class="lang-pt">Seus dados e transações são protegidos com a mais avançada tecnologia de segurança.</p>
+                    <p class="lang-en">Your data and transactions are protected with the most advanced security technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-pt">Como Funciona</h2>
+                <h2 class="lang-en">How It Works</h2>
+                <p class="lang-pt">Em apenas 3 passos simples, você paga todas as contas do Brasil</p>
+                <p class="lang-en">In just 3 simple steps, you pay all your bills in Brazil</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="lang-pt">Envie os Documentos</h3>
+                    <h3 class="lang-en">Send Documents</h3>
+                    <p class="lang-pt">Envie os boletos, faturas ou contas que deseja pagar através do nosso formulário seguro</p>
+                    <p class="lang-en">Send the bills, invoices, or accounts you want to pay through our secure form</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="lang-pt">Escolha o Pagamento</h3>
+                    <h3 class="lang-en">Choose Payment Method</h3>
+                    <p class="lang-pt">Selecione como deseja pagar: transferência bancária, FedNow ou criptomoeda</p>
+                    <p class="lang-en">Select how you want to pay: bank transfer, FedNow, or cryptocurrency</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="lang-pt">Contato Imediato</h3>
+                    <h3 class="lang-en">Immediate Contact</h3>
+                    <p class="lang-pt">Nossa equipe entrará em contato em minutos para confirmar os detalhes e executar o serviço</p>
+                    <p class="lang-en">Our team will contact you within minutes to confirm the details and carry out the service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-pt">Nossos Serviços</h2>
+                <h2 class="lang-en">Our Services</h2>
+                <p class="lang-pt">Pagamos todos os tipos de contas e boletos brasileiros</p>
+                <p class="lang-en">We pay all types of Brazilian bills and invoices</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3 class="lang-pt">Conta de Luz</h3>
+                    <h3 class="lang-en">Electricity Bill</h3>
+                    <p class="lang-pt">Pagamento de contas de energia elétrica de qualquer concessionária</p>
+                    <p class="lang-en">Payment of electricity bills from any provider</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💧</div>
+                    <h3 class="lang-pt">Conta de Água</h3>
+                    <h3 class="lang-en">Water Bill</h3>
+                    <p class="lang-pt">Pagamento de contas de água e esgoto de todo o Brasil</p>
+                    <p class="lang-en">Payment of water and sewage bills from all over Brazil</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📞</div>
+                    <h3 class="lang-pt">Telefone</h3>
+                    <h3 class="lang-en">Telephone</h3>
+                    <p class="lang-pt">Pagamento de contas de telefone fixo e celular</p>
+                    <p class="lang-en">Payment of landline and mobile phone bills</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3 class="lang-pt">Internet</h3>
+                    <h3 class="lang-en">Internet</h3>
+                    <p class="lang-pt">Pagamento de contas de internet e serviços online</p>
+                    <p class="lang-en">Payment of internet bills and online services</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧾</div>
+                    <h3 class="lang-pt">Boletos em Geral</h3>
+                    <h3 class="lang-en">General Bills</h3>
+                    <p class="lang-pt">Pagamento de quaisquer boletos bancários e faturas</p>
+                    <p class="lang-en">Payment of any bank slips and invoices</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3 class="lang-pt">Faturas</h3>
+                    <h3 class="lang-en">Invoices</h3>
+                    <p class="lang-pt">Pagamento de faturas de cartão de crédito e outros serviços</p>
+                    <p class="lang-en">Payment of credit card bills and other services</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3 class="lang-pt">Envios PIX</h3>
+                    <h3 class="lang-en">PIX Transfers</h3>
+                    <p class="lang-pt">Enviamos PIX para seus amigos e familiares no Brasil em minutos</p>
+                    <p class="lang-en">We send PIX to your friends and family in Brazil in minutes</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3 class="lang-pt">Conta de Gás</h3>
+                    <h3 class="lang-en">Gas Bill</h3>
+                    <p class="lang-pt">Pagamento de contas de gás encanado e botijão</p>
+                    <p class="lang-en">Payment of natural gas and cylinder gas bills</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Form -->
+    <section class="service-form" id="solicitar">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="lang-pt">Solicitar Serviço</h2>
+                <h2 class="lang-en">Request Service</h2>
+                
+                <!-- Telegram integration -->
+                <form id="service-request-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="lang-pt">Nome Completo</label>
+                            <label for="name" class="lang-en">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="lang-pt">E-mail</label>
+                            <label for="email" class="lang-en">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" class="lang-pt">Telefone (com código do país)</label>
+                            <label for="phone" class="lang-en">Phone (with country code)</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+55 ou/or +1.." required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service-type" class="lang-pt">Tipo de Serviço</label>
+                            <label for="service-type" class="lang-en">Service Type</label>
+                            <select id="service-type" name="service-type" class="form-control" required>
+                                <option value="" class="lang-pt">Selecione...</option>
+                                <option value="" class="lang-en">Select...</option>
+                                <option value="pix" class="lang-pt">Envio PIX</option>
+                                <option value="pix" class="lang-en">PIX Transfer</option>
+                                <option value="boleto" class="lang-pt">Pagamento de Boleto</option>
+                                <option value="boleto" class="lang-en">Bill Payment</option>
+                                <option value="luz" class="lang-pt">Conta de Luz</option>
+                                <option value="luz" class="lang-en">Electricity Bill</option>
+                                <option value="agua" class="lang-pt">Conta de Água</option>
+                                <option value="agua" class="lang-en">Water Bill</option>
+                                <option value="telefone" class="lang-pt">Telefone</option>
+                                <option value="telefone" class="lang-en">Telephone</option>
+                                <option value="internet" class="lang-pt">Internet</option>
+                                <option value="internet" class="lang-en">Internet</option>
+                                <option value="faturas" class="lang-pt">Faturas</option>
+                                <option value="faturas" class="lang-en">Invoices</option>
+                                <option value="gas" class="lang-pt">Conta de Gás</option>
+                                <option value="gas" class="lang-en">Gas Bill</option>
+                                <option value="outro" class="lang-pt">Outro</option>
+                                <option value="outro" class="lang-en">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="payment-method" class="lang-pt">Forma de Pagamento</label>
+                        <label for="payment-method" class="lang-en">Payment Method</label>
+                        <select id="payment-method" name="payment-method" class="form-control" required>
+                            <option value="" class="lang-pt">Selecione...</option>
+                            <option value="" class="lang-en">Select...</option>
+                            <option value="transferencia" class="lang-pt">Transferência Bancária</option>
+                            <option value="transferencia" class="lang-en">Bank Transfer</option>
+                            <option value="fednow" class="lang-pt">FedNow</option>
+                            <option value="fednow" class="lang-en">FedNow</option>
+                            <option value="cripto" class="lang-pt">Criptomoeda</option>
+                            <option value="cripto" class="lang-en">Cryptocurrency</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="details" class="lang-pt">Detalhes do Serviço</label>
+                        <label for="details" class="lang-en">Service Details</label>
+                        <textarea id="details" name="details" class="form-control" rows="4" placeholder=""></textarea>
+                        <div class="form-text lang-pt">Forneça informações adicionais sobre o serviço solicitado...</div>
+                        <div class="form-text lang-en">Provide additional information about the requested service...</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="lang-pt">Documentos para Pagamento</label>
+                        <label class="lang-en">Payment Documents</label>
+                        <div class="file-upload" id="file-upload-area">
+                            <span class="file-upload-label lang-pt">Clique para adicionar boletos, faturas ou comprovantes</span>
+                            <span class="file-upload-label lang-en">Click to add bills, invoices or receipts</span>
+                            <p class="lang-pt">Formatos aceitos: JPG, PNG, PDF (máx. 5MB cada)</p>
+                            <p class="lang-en">Accepted formats: JPG, PNG, PDF (max. 5MB each)</p>
+                            <input type="file" id="file-input" name="files" multiple accept=".jpg,.jpeg,.png,.pdf">
+                        </div>
+                        <div class="file-list" id="file-list"></div>
+                    </div>
+                    
+                    <div class="submit-info">
+                        <p class="lang-pt"><strong>Taxa de serviço:</strong> $20 por operação</p>
+                        <p class="lang-en"><strong>Service fee:</strong> $20 per transaction</p>
+                        <p class="lang-pt">Após o envio deste formulário, nossa equipe entrará em contato em minutos para prosseguir com a execução do serviço.</p>
+                        <p class="lang-en">After submitting this form, our team will contact you within minutes to proceed with the execution of the service.</p>
+                    </div>
+                    
+                    <div class="spinner" id="form-spinner"></div>
+                    <div class="success-message" id="success-message">
+                        <span class="lang-pt">Solicitação enviada com sucesso! Nossa equipe entrará em contato em breve.</span>
+                        <span class="lang-en">Request sent successfully! Our team will contact you shortly.</span>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" id="submit-btn">
+                        <span class="lang-pt">Enviar Solicitação</span>
+                        <span class="lang-en">Send Request</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-pt">O que nossos clientes dizem</h2>
+                <h2 class="lang-en">What Our Clients Say</h2>
+                <p class="lang-pt">Confira depoimentos de brasileiros que já utilizam nossos serviços</p>
+                <p class="lang-en">Check out testimonials from Brazilians who already use our services</p>
+            </div>
+            
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-text lang-pt">
+                        "Finalmente encontrei uma solução confiável para pagar as contas da minha mãe no Brasil. O TEJ Pague é rápido, seguro e a taxa fixa de $20 é justa. Recomendo!"
+                    </div>
+                    <div class="testimonial-text lang-en">
+                        "Finally found a reliable solution to pay my mother's bills in Brazil. TEJ Pague is fast, secure, and the $20 fixed fee is fair. I highly recommend it!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div>
+                            <h4>Mariana Silva</h4>
+                            <p>Miami, FL</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text lang-pt">
+                        "Uso o TEJ Pague há 2 meses para pagar a faculdade do meu filho no Brasil. Nunca tive problemas e o suporte é excelente. A taxa fixa facilita muito o planejamento!"
+                    </div>
+                    <div class="testimonial-text lang-en">
+                        "I've been using TEJ Pague for 2 months to pay for my son's college in Brazil. Never had any issues and the support is excellent. The fixed fee makes planning so much easier!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">R</div>
+                        <div>
+                            <h4>Roberto Alves</h4>
+                            <p>Orlando, FL</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text lang-pt">
+                        "Antes tinha que pedir para parentes pagarem minhas contas no Brasil. Agora com o TEJ Pague resolvo tudo sozinho em poucos minutos. O contato da equipe é imediato após o envio dos documentos!"
+                    </div>
+                    <div class="testimonial-text lang-en">
+                        "Before I had to ask relatives to pay my bills in Brazil. Now with TEJ Pague I handle everything myself in just a few minutes. The team contacts me immediately after I send the documents!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div>
+                            <h4>Carlos Mendes</h4>
+                            <p>New York, NY</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="lang-pt">Pronto para simplificar sua vida?</h2>
+            <h2 class="lang-en">Ready to simplify your life?</h2>
+            <p class="lang-pt">Junte-se a milhares de brasileiros que já confiam no TEJ Pague para pagar suas contas no Brasil</p>
+            <p class="lang-en">Join thousands of Brazilians who already trust TEJ Pague to pay their bills in Brazil</p>
+            <a href="#solicitar" class="btn btn-primary hero-btn lang-pt" style="background-color: var(--accent);">Solicitar Serviço Agora</a>
+            <a href="#solicitar" class="btn btn-primary hero-btn lang-en" style="background-color: var(--accent);">Request Service Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TEJ Pague</h3>
+                    <p class="lang-pt">A maneira mais fácil e segura de pagar contas no Brasil diretamente dos EUA.</p>
+                    <p class="lang-en">The easiest and safest way to pay bills in Brazil directly from the USA.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="lang-pt">Serviços</h3>
+                    <h3 class="lang-en">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#servicos" class="lang-pt">Pagamento de Contas</a><a href="#" class="lang-en">Bill Payment</a></li>
+                        <li><a href="#servicos" class="lang-pt">Envios PIX</a><a href="#" class="lang-en">PIX Transfers</a></li>
+                        <li><a href="#servicos" class="lang-pt">Boletos</a><a href="#" class="lang-en">Bank Slips</a></li>
+                        <li><a href="#servicos" class="lang-pt">Faturas</a><a href="#" class="lang-en">Invoices</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="lang-pt">Empresa</h3>
+                    <h3 class="lang-en">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#depoimentos" class="lang-pt">Depoimentos</a><a href="#" class="lang-en">Testimonials</a></li>
+                        <li><a href="#como-funciona" class="lang-pt">Como Funciona</a><a href="#" class="lang-en">How It Works</a></li>
+                        <li><a href="#" class="lang-pt">Política de Privacidade</a><a href="#" class="lang-en">Privacy Policy</a></li>
+                        <li><a href="#" class="lang-pt">Termos de Uso</a><a href="#" class="lang-en">Terms of Use</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="lang-pt">Suporte</h3>
+                    <h3 class="lang-en">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#solicitar" class="lang-pt">Central de Ajuda</a><a href="#" class="lang-en">Help Center</a></li>
+                        <li><a href="#solicitar" class="lang-pt">Contato</a><a href="#" class="lang-en">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 TEJ Pague. <span class="lang-pt">Todos os direitos reservados.</span><span class="lang-en">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switching Functionality
+        const languageButtons = document.querySelectorAll('.language-btn');
+        const body = document.body;
+        
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                
+                // Update active button
+                languageButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update body class
+                if (lang === 'en') {
+                    body.classList.remove('portuguese');
+                    body.classList.add('english');
+                } else {
+                    body.classList.remove('english');
+                    body.classList.add('portuguese');
+                }
+                
+                // Close mobile menu if open
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // File Upload Functionality
+        const fileInput = document.getElementById('file-input');
+        const fileUploadArea = document.getElementById('file-upload-area');
+        const fileList = document.getElementById('file-list');
+        const uploadedFiles = [];
+        
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = 'white';
+            fileUploadArea.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+        });
+        
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+            fileUploadArea.style.backgroundColor = 'transparent';
+        });
+        
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+            fileUploadArea.style.backgroundColor = 'transparent';
+            
+            if (e.dataTransfer.files.length > 0) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+        
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                handleFiles(fileInput.files);
+            }
+        });
+        
+        function handleFiles(files) {
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // Check file size (5MB max)
+                if (file.size > 5 * 1024 * 1024) {
+                    if (body.classList.contains('english')) {
+                        alert(`File ${file.name} is too large. Maximum size allowed is 5MB.`);
+                    } else {
+                        alert(`O arquivo ${file.name} é muito grande. O tamanho máximo permitido é 5MB.`);
+                    }
+                    continue;
+                }
+                
+                // Check file type
+                const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+                if (!validTypes.includes(file.type)) {
+                    if (body.classList.contains('english')) {
+                        alert(`File ${file.name} is not a supported type. Use JPG, PNG or PDF.`);
+                    } else {
+                        alert(`O arquivo ${file.name} não é um tipo suportado. Use JPG, PNG ou PDF.`);
+                    }
+                    continue;
+                }
+                
+                uploadedFiles.push(file);
+                renderFileList();
+            }
+            
+            // Reset file input
+            fileInput.value = '';
+        }
+        
+        function renderFileList() {
+            fileList.innerHTML = '';
+            
+            if (uploadedFiles.length === 0) {
+                return;
+            }
+            
+            uploadedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                
+                const fileName = document.createElement('span');
+                fileName.textContent = file.name;
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = '✕';
+                removeBtn.addEventListener('click', () => {
+                    uploadedFiles.splice(index, 1);
+                    renderFileList();
+                });
+                
+                fileItem.appendChild(fileName);
+                fileItem.appendChild(removeBtn);
+                fileList.appendChild(fileItem);
+            });
+        }
+        
+        // Telegram Integration
+        const serviceForm = document.getElementById('service-request-form');
+        const formSpinner = document.getElementById('form-spinner');
+        const successMessage = document.getElementById('success-message');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        serviceForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const serviceType = document.getElementById('service-type').value;
+            const paymentMethod = document.getElementById('payment-method').value;
+            const details = document.getElementById('details').value;
+            
+            if (!name || !email || !phone || !serviceType || !paymentMethod) {
+                if (body.classList.contains('english')) {
+                    alert('Please fill in all required fields.');
+                } else {
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                }
+                return;
+            }
+            
+            if (uploadedFiles.length === 0) {
+                if (body.classList.contains('english')) {
+                    alert('Please add at least one payment document.');
+                } else {
+                    alert('Por favor, adicione pelo menos um documento para pagamento.');
+                }
+                return;
+            }
+            
+            // Show loading spinner
+            formSpinner.style.display = 'block';
+            submitBtn.disabled = true;
+            if (body.classList.contains('english')) {
+                submitBtn.innerHTML = '<span class="lang-en">Sending...</span>';
+            } else {
+                submitBtn.innerHTML = '<span class="lang-pt">Enviando...</span>';
+            }
+            
+            try {
+                // Replace with your Telegram Bot API configuration
+                const telegramBotToken = '8426895580:AAFhGSJ-wQDX196Plx1swj6Z2uL2Cxe2qLw';
+                const telegramChatId = '6514701640';
+                
+                // Create message text for Telegram
+                const messageText = `
+Nova solicitação de serviço - TEJ Pague:
+Nome: ${name}
+Email: ${email}
+Telefone: ${phone}
+Tipo de serviço: ${serviceType}
+Forma de pagamento: ${paymentMethod}
+Detalhes: ${details || 'Nenhum detalhe adicional fornecido'}
+Arquivos anexados: ${uploadedFiles.map(file => file.name).join(', ')}
+                `;
+                
+                // Send message to Telegram
+                const messageResponse = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: telegramChatId,
+                        text: messageText,
+                    }),
+                });
+                
+                if (!messageResponse.ok) {
+                    throw new Error('Failed to send message to Telegram');
+                }
+                
+                // Send files to Telegram
+                for (const file of uploadedFiles) {
+                    const formData = new FormData();
+                    formData.append('chat_id', telegramChatId);
+                    formData.append('document', file);
+                    
+                    const fileResponse = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendDocument`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    
+                    if (!fileResponse.ok) {
+                        console.warn(`Failed to send file: ${file.name}`);
+                    }
+                    
+                    // Small delay to avoid rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+                
+                // Show success message
+                formSpinner.style.display = 'none';
+                successMessage.style.display = 'block';
+                submitBtn.style.display = 'none';
+                
+                // Reset form after success
+                setTimeout(() => {
+                    serviceForm.reset();
+                    uploadedFiles.length = 0;
+                    renderFileList();
+                    successMessage.style.display = 'none';
+                    submitBtn.style.display = 'block';
+                    submitBtn.disabled = false;
+                    if (body.classList.contains('english')) {
+                        submitBtn.innerHTML = '<span class="lang-en">Send Request</span>';
+                    } else {
+                        submitBtn.innerHTML = '<span class="lang-pt">Enviar Solicitação</span>';
+                    }
+                }, 5000);
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+                formSpinner.style.display = 'none';
+                submitBtn.disabled = false;
+                if (body.classList.contains('english')) {
+                    alert('Error sending request. Please try again.');
+                    submitBtn.innerHTML = '<span class="lang-en">Send Request</span>';
+                } else {
+                    alert('Erro ao enviar solicitação. Por favor, tente novamente.');
+                    submitBtn.innerHTML = '<span class="lang-pt">Enviar Solicitação</span>';
+                }
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
